@@ -1,1 +1,9 @@
-Command: python3 main.py
+services:
+  # A Docker web service
+  - type: web
+    name: GenAI
+    runtime: python
+    plan: free
+    autoDeploy: True
+    buildCommand: pip install -r requirements.txt
+    startCommand: gradio main.py
