@@ -63,7 +63,7 @@ with gr.Blocks(css=css) as demo:
                     <strong style="font-size: 24px;">CodeGen App</strong>
                 </div>
             """)
-         
+                                                                                      
          
             out = gr.TextArea(lines=15)
             inp = gr.Textbox(placeholder="What do you want to search here?")

@@ -1,0 +1,9 @@
+services:
+  # A Docker web service
+  - type: web
+    name: GenAI
+    runtime: python
+    plan: free
+    autoDeploy: True
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 main.py
