@@ -12,6 +12,7 @@ class DatabaseHandler:
         return conn, cursor
 
     def create_table(self):
+        
         with self.lock:
             conn, cursor = self.connect()
             cursor.execute('''
@@ -25,11 +26,14 @@ class DatabaseHandler:
             conn.close()
 
     def insert_data(self, input_data, output_data):
-        with self.lock:
-            conn, cursor = self.connect()
-            cursor.execute("INSERT INTO history (input, output) VALUES (?, ?)", (input_data, output_data))
-            conn.commit()
-            conn.close()
+        if input_data is not None and output_data is not None:
+            with self.lock:
+                conn, cursor = self.connect()
+                cursor.execute("INSERT INTO history (input, output) VALUES (?, ?)", (input_data, output_data))
+                conn.commit()
+                conn.close()
+        else:
+            print("Error: Both input_data and output_data must be provided.")
 
     def fetch_all_data(self):
         with self.lock:

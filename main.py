@@ -8,6 +8,7 @@ allows you to create a web-based GUI / demo around a machine learning model (or 
 few lines of code.'''
 
 db_handler = DatabaseHandler()
+db_handler.create_table()
 
 google_key.configure(api_key='AIzaSyDoY1gTJWLHkS61QAt7ygpF5qQdixANR2Q')
  
@@ -25,8 +26,10 @@ def generate_code(prompt):
                 max_output_tokens=200,
             )
             response = completion.result
-            db_handler.insert_data(prompt, response)
-            return response
+            if response is not None:
+    
+                db_handler.insert_data(prompt, response)
+                return response
         
     except Exception as e:
         return f"Error: {e}"
